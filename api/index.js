@@ -55,6 +55,8 @@ app.use(bodyParser.json());
 
 
 var orderroute = require('./routes/order');
+var cards = require('./routes/card')
+app.use(cards)
 app.use(orderroute);
 
 
