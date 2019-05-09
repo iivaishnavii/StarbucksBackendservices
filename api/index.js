@@ -55,8 +55,9 @@ app.use(bodyParser.json());
 
 
 var orderroute = require('./routes/order');
+var userroute = require('./routes/user');
 app.use(orderroute);
-
+app.use(userroute);
 
 
 // Execute App

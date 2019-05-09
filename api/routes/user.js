@@ -1,6 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const User = require('../models/userSchema');
+var express = require('express');
+var router = express.Router();
+var User = require('../models/userSchema');
 
 /**
  * A route for user registration
@@ -31,8 +31,24 @@ router.post('/user', function (req, res) {
 router.get('/user/:id', function (req, res) {
   User.findOne({ _id: String(req.params.id)}, function(err, data) {
     if (err) {throw err;}
-    res.send(data);
+    else {
+      let id    = data._id
+      let email = data.email
+      let phone = (data.phone != undefined) ? data.phone : "No Phone On File"
+      res.json({'id': id, 'email': email, 'phone': phone});
+    }
   })
+});
+
+router.post('/user/authenticate', function(req, res) {
+  User.findOneAndReplace({email: req.body.email, pin: req.body.pin},
+                         {$set:{authenticated: true}},
+                         {new: false},
+    (err, doc) => {
+      if (err){throw err;}
+      console.log(doc);
+      res.json({'doc': doc, 'User Authentiated' : true})
+    });
 });
 
 module.exports = router;

@@ -19,6 +19,10 @@ let userSchema = new Schema({
     },
     card: {
       type: Array,
+    },
+    authenticated: {
+      type: Boolean,
+      default: false
     }
 });
 
