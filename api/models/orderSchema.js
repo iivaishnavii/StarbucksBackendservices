@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 
 let orderSchema = new Schema({
-    userid: {
+    email: {
         type: String, 
     },
     cardno: {
@@ -29,7 +29,7 @@ let orderSchema = new Schema({
         }, 
     status: {
         type: String, 
-        default:"notdone"
+        default:"rejected"
     },
 });
 
