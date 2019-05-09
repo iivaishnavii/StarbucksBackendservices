@@ -52,9 +52,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 // parse application/json
 app.use(bodyParser.json());
 
-app.get('/orders', function(req, res){
-//code
-});
+
+
+var orderroute = require('./routes/order');
+app.use(orderroute);
+
 
 
 // Execute App

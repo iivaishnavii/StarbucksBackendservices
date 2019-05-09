@@ -14,7 +14,7 @@ let userSchema = new Schema({
     phone: {
         type: String, 
         },  
-    city: {
+    card: {
         type: Array, 
 
     },
