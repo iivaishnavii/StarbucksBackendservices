@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+
 var User = require('../models/userSchema');
 
 /**
@@ -41,13 +42,24 @@ router.get('/user/:id', function (req, res) {
 });
 
 router.post('/user/authenticate', function(req, res) {
-  User.findOneAndReplace({email: req.body.email, pin: req.body.pin},
+  User.findOneAndUpdate({email: req.body.email, pin: req.body.pin},
                          {$set:{authenticated: true}},
-                         {new: false},
+                         {upsert: false},
     (err, doc) => {
       if (err){throw err;}
       console.log(doc);
       res.json({'doc': doc, 'User Authentiated' : true})
+    });
+});
+
+router.post('/user/logout', function(req, res) {
+  User.findOneAndUpdate({email: req.body.email},
+                         {$set:{authenticated: false}},
+                         {upsert: false},
+    (err, doc) => {
+      if (err){throw err;}
+      console.log(doc);
+      res.json({'doc': doc, 'User Logged Out' : true})
     });
 });
 
