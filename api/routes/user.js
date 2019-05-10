@@ -19,6 +19,15 @@ router.post('/user', function (req, res) {
     });
 });
 
+router.delete('/user/:email', function (req, res) {
+  User.findOneAndRemove({ email : String(req.params.email)}, function(err) {
+    if (err) {throw err;}
+    else {
+      res.json({'deleted' : true});
+    }
+  })
+})
+
 /**
  * A route to get user profile.
  * Uses email as unique key
