@@ -79,4 +79,14 @@ router.route('/orders').get( function (req, res) {
             }
             })
     });
+
+    router.route('/healthcheck').get( function (req, res) {
+    
+
+  
+                        res.status(200).json("I am healthy"); 
+               
+        });
+
+
 module.exports = router;
