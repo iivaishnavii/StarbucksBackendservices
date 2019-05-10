@@ -18,10 +18,13 @@
 
 <strong>Team Members</strong>
 
-[@mimlowe](https://github.com/mimlowe) - Michael Lowe, User Profile & Authentication
-[@iivaishnavii](https://github.com/iivaishnavii) - Vaishnavi Ramesh, Cards
-[@KavyaChennoju97](https://github.com/KavyaChennoju97) - Kavya Chennoju, Orders
-[@psnehas](https://github.com/psnehas) - Sneha Sneha, Payments
+[@mimlowe](https://github.com/mimlowe) - Michael Lowe, User Profiles & Authentication
+
+[@iivaishnavii](https://github.com/iivaishnavii) - Vaishnavi Ramesh, Add Cards
+
+[@KavyaChennoju97](https://github.com/KavyaChennoju97) - Kavya Chennoju, Manage Orders
+
+[@psnehas](https://github.com/psnehas) - Sneha Sneha, Make Payments
 
 ## Features
 
