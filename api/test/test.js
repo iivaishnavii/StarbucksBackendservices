@@ -59,7 +59,7 @@ describe('User & Authentication', () => {
     // Pin update value
     const newPin      = '0987'
 
-
+    // Test 1: Register New User
     it("Create User - User should be able to register", (done) => {
         // Relevant sample data
         var data={
@@ -78,6 +78,7 @@ describe('User & Authentication', () => {
         });
     })
 
+    // Test 2: Login with newly created account
     it("Authenticate User - User should be able to login", (done) => {
         // Relevant sample data
         var data = {
@@ -95,7 +96,7 @@ describe('User & Authentication', () => {
         });
     })
 
-
+    // Test 3: Logout with newly created account
     it("De-Authenticate User - User should be able to logout", (done) => {
         // Relevant sample data
         var data = {
@@ -112,6 +113,7 @@ describe('User & Authentication', () => {
         });
     })
 
+    // Test 4: Change pin number on new account
     it("Change Pin - User should be able to change pin and login", (done) => {
         //sample data
         var data = {
@@ -123,6 +125,17 @@ describe('User & Authentication', () => {
         chai.request(rooturl)
         .post('/user/pin')
         .send(data)
+        .end((err, res) => {
+            expect(err).to.be.null;
+            res.should.have.status(200);
+            done();
+        });
+    })
+
+    // Test 5: Delete newly created account
+    it("Delete User - Accounts should be able to be removed", (done) => {
+        chai.request(rooturl)
+        .delete(`/user/${email}`)
         .end((err, res) => {
             expect(err).to.be.null;
             res.should.have.status(200);

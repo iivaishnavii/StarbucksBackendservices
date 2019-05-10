@@ -19,6 +19,15 @@ router.post('/user', function (req, res) {
     });
 });
 
+router.delete('/user/:email', function (req, res) {
+  User.findOneAndRemove({ email : String(req.params.email)}, function(err) {
+    if (err) {throw err;}
+    else {
+      res.json({'deleted' : true});
+    }
+  })
+})
+
 /**
  * A route to get user profile.
  * Uses email as unique key
@@ -40,7 +49,7 @@ router.get('/user/:email', function (req, res) {
   })
 });
 
-/** 
+/**
  * A route for updating the pin.
  * Requires that res.email && res.pin match an existing User document.
  * De-authenticates the user and updates pin to res.newPin
