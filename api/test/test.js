@@ -23,11 +23,54 @@ describe('Mocha Test Harness:', () => {
         .send(data)
         .end((err, res) => {
             expect(err).to.be.null;
-            res.should.have.status(201);
+            res.should.have.status(200);
         done();
         });
     })
-    it("Test case 2 - User should be able to add card",(done)=>{
+
+
+    it("Test Case 2 - Not existing User should not be able to place order", (done) => {
+
+        //sample data
+        var data={
+            "email":"sample@sle.com",
+            "cardno": "111111111",
+            "qty": "5",
+            "item": "coffee",
+            "milk":"yes"
+          }
+        chai.request(rooturl)
+        .post('/orders')
+        .send(data)
+        .end((err, res) => {
+            expect(err).to.be.null;
+            res.should.have.status(400);
+        done();
+        });
+    })
+
+    it("Test Case 3 - User cant use non existing card to place order", (done) => {
+
+        //sample data
+        var data={
+            "email":"sample@sample.com",
+            "cardno": "111111",
+            "qty": "5",
+            "item": "coffee",
+            "milk":"yes"
+          }
+        chai.request(rooturl)
+        .post('/orders')
+        .send(data)
+        .end((err, res) => {
+            expect(err).to.be.null;
+            res.should.have.status(400);
+        done();
+        });
+    })
+
+
+    it("Test case 4 - User should be able to add card",(done)=>{
         var data={
             "cardId" : 111111117,
             "cardCode" :112,
@@ -53,7 +96,7 @@ describe('User & Authentication', () => {
     // Append email formatting
     const email       = `${emailPrefix}@chaitesting.com`
     // Define testing phone #
-    const phone       = `4150000000`
+     const phone       = `4150000000`
     // Default pin value
     const pin         = `1234`
     // Pin update value
@@ -143,4 +186,42 @@ describe('User & Authentication', () => {
         });
     })
 
+})
+
+describe('Mocha Test for payments', () => {
+    //addtagline
+    it("Test Case 1 - User should be able to pay if balance is sufficient", (done) => {
+
+        //sample data
+        var data={
+            "email":"sample@sample.com",
+            "cardNum":111111111,
+            "orderid":"5cd4c6d7795b81b93e079423"
+        }
+        chai.request(rooturl)
+        .post('/makePayment')
+        .send(data)
+        .end((err, res) => {
+            expect(err).to.be.null;
+            res.should.have.status(200);
+        done();
+        });
+    })
+    it("Test Case 2 - User should not be able to pay if balance is insufficient", (done) => {
+
+        //sample data
+        var data={
+            "email":"sample@sample.com",
+            "cardNum":111111111,
+            "orderid":"5cd4c6d7795b81b93e079423"
+        }
+        chai.request(rooturl)
+        .post('/makePayment')
+        .send(data)
+        .end((err, res) => {
+            expect(err).to.be.null;
+            res.should.have.status(400);
+        done();
+        });
+    })
 })
