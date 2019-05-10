@@ -28,44 +28,45 @@ router.route('/makePayment').post( async function (req, res) {
 
     //get price from the order table
     let getPriceFromOrders= await orders.findOne({email:userMail,_id:orderid},{price:1,_id:0}).then((response)=>{
-           // price = response.price;
-            console.log("price is:", response)
+            price = response.price;
+            console.log("price is:",price)
         }).catch((err)=>console.log("error at price retrieval",err));
     
         //card number validation
-//     if(user_exists){
-//    let is_card_num_valid = await Card.findOne({"cardId":cardNum}).select('cardId').then((response)=>{
-//         card_valid = response.cardId;
-//         console.log("card number is registered",card_valid);
-//     }).catch(err=>console.log("error at card validation",err));
+    if(user_exists){
+   let is_card_num_valid = await Card.findOne({"cardId":cardNum}).select('cardId').then((response)=>{
+        card_valid = response.cardId;
+        console.log("card number is registered",card_valid);
+    }).catch(err=>console.log("error at card validation",err));
 
-//     //get balance from card schema
-//     if(card_valid){
-//     let balance_val = await Card.findOne({"cardId":cardNum},{"_id":0}).select('balance').then((response)=>{
-//         balanceVal = response.balance;
-//         console.log("the balance is ",balanceVal);
+    //get balance from card schema
+    if(card_valid){
+    let balance_val = await Card.findOne({"cardId":cardNum},{"_id":0}).select('balance').then((response)=>{
+        balanceVal = response.balance;
+        console.log("the balance is ",balanceVal);
         
-//         if(balanceVal > minimum_balance){
-//             balanceVal -= price;
-//           let update_balance= await Card.findOneAndUpdate({'cardId':cardNum},{'balance':balanceVal},{useFindAndModify:false}).then((response)=>{
-//                 console.log("balance updated");
-//          let update_status= await orders.findOneAndUpdate({'cardno':cardNum,'_id':orderid},{'status':"Completed"});
-//           let view_new_balance = await Card.find({'cardno':cardNum},{"_id":0}).select('balance').then((response)=>{
-//             var newBal = response.balance;
-//             console.log("new balance value after update", newBal);
-//           })
-          
-//             res.status(200).json("payment completed");
-//             }).catch((err)=>{console.log("error at balance deduction", err)});
-//         }
-        
-//         else{
-//             console.log("Insufficient balance for this order");
-//            await orders.findOneAndUpdate({'cardno':cardNum,'_id':orderid},{'status':"Rejected"});
-//             res.status(400).json("payment rejected");
-//         }
-//     }).catch((err)=>console.log("error at balance", err));
-//     }
-// }
+        if((balanceVal-price) > minimum_balance){
+            balanceVal -= price;
+          let update_balance= Card.findOneAndUpdate({'cardId':cardNum},{'balance':balanceVal},{useFindAndModify:false}).then((response)=>{
+                console.log("balance updated");
+         let update_status=  orders.findOneAndUpdate({_id:orderid},{$set:{"status":"Completed"}},{useFindAndModify:false}).then((response)=>{
+             console.log("Status Updated")
+            }).catch((err)=>console.log("error at order status",err));
+          let view_new_balance = Card.findOne({'cardId':cardNum},{"_id":0,'balance':1}).then((response)=>{
+            var newBal = response.balance;
+            console.log("new balance value after update", newBal);
+            balanceVal = newBal;
+          })
+            res.status(200).json("payment completed");
+            }).catch((err)=>{console.log("error at balance deduction", err)});
+        }
+        else{
+            console.log("Insufficient balance for this order");
+            orders.findOneAndUpdate({_id:orderid},{$set:{'status':"Rejected"}});
+            res.status(400).json("payment rejected");
+        }
+    }).catch((err)=>console.log("error at balance", err));
+    }
+}
 });
 module.exports = router;

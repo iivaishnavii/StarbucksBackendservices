@@ -187,3 +187,41 @@ describe('User & Authentication', () => {
     })
 
 })
+
+describe('Mocha Test for payments', () => {
+    //addtagline
+    it("Test Case 1 - User should be able to pay if balance is sufficient", (done) => {
+
+        //sample data
+        var data={
+            "email":"sample@sample.com",
+            "cardNum":111111111,
+            "orderid":"5cd4c6d7795b81b93e079423"
+        }
+        chai.request(rooturl)
+        .post('/makePayment')
+        .send(data)
+        .end((err, res) => {
+            expect(err).to.be.null;
+            res.should.have.status(200);
+        done();
+        });
+    })
+    it("Test Case 2 - User should not be able to pay if balance is insufficient", (done) => {
+
+        //sample data
+        var data={
+            "email":"sample@sample.com",
+            "cardNum":111111111,
+            "orderid":"5cd4c6d7795b81b93e079423"
+        }
+        chai.request(rooturl)
+        .post('/makePayment')
+        .send(data)
+        .end((err, res) => {
+            expect(err).to.be.null;
+            res.should.have.status(400);
+        done();
+        });
+    })
+})
