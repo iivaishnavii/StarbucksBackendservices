@@ -19,8 +19,7 @@
 <strong>Team Members</strong>
 
 [@mimlowe](https://github.com/mimlowe) - Michael Lowe, User Profile & Authentication
-[@iivaishnavii](https://github.com/iivaishnavii) -
-[@KavyaChennoju97](https://github.com/KavyaChennoju97) - Kavya Chennoju,
+
 
 ## Features
 
