@@ -19,7 +19,9 @@
 <strong>Team Members</strong>
 
 [@mimlowe](https://github.com/mimlowe) - Michael Lowe, User Profile & Authentication
-
+[@iivaishnavii](https://github.com/iivaishnavii) - Vaishnavi Ramesh, Cards
+[@KavyaChennoju97](https://github.com/KavyaChennoju97) - Kavya Chennoju, Orders
+[@psnehas](https://github.com/psnehas) - Sneha Sneha, Payments
 
 ## Features
 
