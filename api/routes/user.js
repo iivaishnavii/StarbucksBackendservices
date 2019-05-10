@@ -40,7 +40,7 @@ router.get('/user/:email', function (req, res) {
   })
 });
 
-/**
+/** 
  * A route for updating the pin.
  * Requires that res.email && res.pin match an existing User document.
  * De-authenticates the user and updates pin to res.newPin

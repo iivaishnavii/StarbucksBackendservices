@@ -29,20 +29,30 @@ describe('Mocha Test Harness:', () => {
     })
 })
 
-
-describe('User/Authentication', () => {
-    //addtagline
+/**
+ * @type User & Authentication Test Cases
+ */
+describe('User & Authentication', () => {
+    //Generate random email address prefix
     const emailPrefix = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+    // Append email formatting
+    const email       = `${emailPrefix}@chaitesting.com`
+    // Define testing phone #
+    const phone       = `4150000000`
+    // Default pin value
+    const pin         = `1234`
+    // Pin update value
     const newPin      = '0987'
 
-    it("Create User - User should be able to register", (done) => {
 
-        //sample data
+    it("Create User - User should be able to register", (done) => {
+        // Relevant sample data
         var data={
-            "email": `${emailPrefix}@testing.com`,
-            "pin" : `1234`,
-            "phone" : '4150000000'
-          }
+            "email" : `${email}`,
+            "pin"   : `${pin}`  ,
+            "phone" : `${phone}`
+        }
+
         chai.request(rooturl)
         .post('/user')
         .send(data)
@@ -54,11 +64,12 @@ describe('User/Authentication', () => {
     })
 
     it("Authenticate User - User should be able to login", (done) => {
-        //sample data
-        var data={
-            "email" : `${emailPrefix}@testing.com`,
-            "pin"   : `1234`,
-          }
+        // Relevant sample data
+        var data = {
+            "email" : `${email}`,
+            "pin"   : `${pin}`
+        }
+
         chai.request(rooturl)
         .post('/user/authenticate')
         .send(data)
@@ -71,10 +82,11 @@ describe('User/Authentication', () => {
 
 
     it("De-Authenticate User - User should be able to logout", (done) => {
-        //sample data
-        var data={
-            "email" : `${emailPrefix}@testing.com`,
-          }
+        // Relevant sample data
+        var data = {
+            "email": `${email}`,
+        }
+
         chai.request(rooturl)
         .post('/user/logout')
         .send(data)
@@ -87,11 +99,12 @@ describe('User/Authentication', () => {
 
     it("Change Pin - User should be able to change pin and login", (done) => {
         //sample data
-        var data={
-            "email"   : `${emailPrefix}@testing.com`,
-            "pin"     : `1234`,
-            "newPin"  : newPin
+        var data = {
+            "email"   : `${email}`,
+            "pin"     : `${pin}`,
+            "newPin"  : `${newPin}`
         }
+
         chai.request(rooturl)
         .post('/user/pin')
         .send(data)
