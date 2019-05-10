@@ -20,7 +20,7 @@
 
 [@mimlowe](https://github.com/mimlowe) - Michael Lowe, User Profile & Authentication
 [@iivaishnavii](https://github.com/iivaishnavii) -
-[@KavyaChennoju97](https://github.com/KavyaChennoju97) - Kavya Chennoju, 
+[@KavyaChennoju97](https://github.com/KavyaChennoju97) - Kavya Chennoju,
 
 ## Features
 
@@ -53,7 +53,7 @@
 ## Documentation
 
 Full documentation is available through
-[Postman Documenter](https://documenter.getpostman.com/view/6559172/S1Lx1Ttn)
+[Postman Documenter](https://documenter.getpostman.com/view/6559172/S1Lx1U85)
 
 ## Logs
 
