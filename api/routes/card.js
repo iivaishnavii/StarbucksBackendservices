@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Card = require('../models/cardSchema')
 var User = require('../models/userSchema')
-
+// A route for a registered user to log in
 router.post('/addCard',function (req, res) {
     User.findOne({'email':req.body.email},(err,user)=>{
         if(err)
@@ -13,7 +13,7 @@ router.post('/addCard',function (req, res) {
             res.end('Unable to fetch user details '+err)
         }
     
-        //if user exists,insert the cardid into the cards array
+        //if user exists,insert cardid into the cards array
         else if(user)
         {
             console.log("user retrieved is"+user)

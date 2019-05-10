@@ -23,7 +23,22 @@ describe('Mocha Test Harness:', () => {
         .send(data)
         .end((err, res) => {
             expect(err).to.be.null;
-            res.should.have.status(200);
+            res.should.have.status(201);
+        done();
+        });
+    })
+    it("Test case 2 - User should be able to add card",(done)=>{
+        var data={
+            "cardId" : 111111117,
+            "cardCode" :112,
+            "email":"sample@sample.com"
+        }
+        chai.request(rooturl)
+        .post('/addCard')
+        .send(data)
+        .end((err, res) => {
+            expect(err).to.be.null;
+            res.should.have.status(201);
         done();
         });
     })
