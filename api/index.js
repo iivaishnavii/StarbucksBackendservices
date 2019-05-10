@@ -57,9 +57,11 @@ app.use(bodyParser.json());
 var orderroute = require('./routes/order');
 var cards = require('./routes/card')
 var userroute = require('./routes/user');
+var payments = require('./routes/payment')
 app.use(cards)
 app.use(orderroute);
 app.use(userroute);
+app.use(payments)
 
 
 // Execute App

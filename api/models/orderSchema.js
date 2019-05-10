@@ -31,6 +31,7 @@ let orderSchema = new Schema({
         type: String, 
         default:"rejected"
     },
+    
 });
 
 module.exports = mongoose.model('Orders', orderSchema);

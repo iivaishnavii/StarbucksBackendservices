@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
 var User = require('../models/userSchema');
 var Card = require('../models/cardSchema')
 
@@ -11,17 +12,12 @@ router.route('/makePayment').post( async function (req, res) {
     console.log("Make payments page");
     let userMail = req.body.email;
     let price =0;
-     let ObjectId = require('mongoose').Types.ObjectId;
-    let orderid2={orderid:new ObjectId(req.body.orderid)};
-    let objectorderid=orderid2.orderid
-    let orderid = req.body.orderid;
-    console.log(typeof(orderid))
-    console.log(typeof(orderid2.orderid))
+    let orderid = req.body.orderid;   
     let cardNum = req.body.cardNum;
     var minimum_balance=1.50;
-     var user_exists ='';
-     var card_valid=0;
-     var balanceVal = 0;
+    var user_exists ='';
+    var card_valid=0;
+    var balanceVal = 0;
     
      
     //user id validation
@@ -31,9 +27,9 @@ router.route('/makePayment').post( async function (req, res) {
     }).catch((err)=>console.log("error at user validation", err))
 
     //get price from the order table
-    let getPriceFromOrders= await orders.findById({objectorderid}).select('price').then((response)=>{
-            price = response.price;
-            console.log("price is:", price)
+    let getPriceFromOrders= await orders.findOne({email:userMail,_id:orderid},{price:1,_id:0}).then((response)=>{
+           // price = response.price;
+            console.log("price is:", response)
         }).catch((err)=>console.log("error at price retrieval",err));
     
         //card number validation
