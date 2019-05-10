@@ -6,19 +6,17 @@ var assert = require('assert');
 var expect = chai.expect;
 let rooturl = 'http://localhost:3001';
 
-describe('Order Test Harness:', () => {
-
+describe('Mocha Test Harness:', () => {
+    //addtagline
     it("Test Case 1 - User should be able to place order", (done) => {
 
         //sample data
         var data={
-            
-                "email":"sample@sample.com",
-               "cardno": "111111111",
-               "qty": "5",
-               "item": "coffee",
-               "milk":"yes"
-           
+            "email":"sample@sample.com",
+            "cardno": "111111111",
+            "qty": "5",
+            "item": "coffee",
+            "milk":"yes"
           }
         chai.request(rooturl)
         .post('/orders')
@@ -31,68 +29,88 @@ describe('Order Test Harness:', () => {
     })
 
 
-    it("Test Case 2 - User should be able to place order", (done) => {
-
-        var data={
-            
-                "email":"sample@samp.com",
-               "cardno": "111111111",
-               "qty": "5",
-               "item": "coffee",
-               "milk":"yes"
-           
-          }
-        chai.request(rooturl)
-        .post('/orders')
-        .send(data)
-        .end((err, res) => {
-            expect(err).to.be.null;
-            res.should.have.status(400);
-            res.body.should.be.equal("User not found")
-        done();
-        });
-    })
-
-    it("Test Case 3 - User cant place order without adding card", (done) => {
-        var data={
-            
-                "email":"sample@sample.com",
-               "cardno": "111111",
-               "qty": "5",
-               "item": "coffee",
-               "milk":"yes"
-           
-          }
-        chai.request(rooturl)
-        .post('/orders')
-        .send(data)
-        .end((err, res) => {
-            expect(err).to.be.null;
-            res.should.have.status(400);
-            res.body.should.be.equal("Card not found!Use other card to place order")
-        done();
-        });
-    })
-
-
-})
-
-
-
-
-describe('User/Authentication', () => {
-    //addtagline
-    const emailPrefix = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
-    const newPin      = '0987'
-
-    it("Create User - User should be able to register", (done) => {
+    it("Test Case 2 - Not existing User should not be able to place order", (done) => {
 
         //sample data
         var data={
-            "email": `${emailPrefix}@testing.com`,
-            "pin" : `1234`,
-            "phone" : '4150000000'
+            "email":"sample@sle.com",
+            "cardno": "111111111",
+            "qty": "5",
+            "item": "coffee",
+            "milk":"yes"
           }
+        chai.request(rooturl)
+        .post('/orders')
+        .send(data)
+        .end((err, res) => {
+            expect(err).to.be.null;
+            res.should.have.status(400);
+        done();
+        });
+    })
+
+    it("Test Case 3 - User cant use non existing card to place order", (done) => {
+
+        //sample data
+        var data={
+            "email":"sample@sample.com",
+            "cardno": "111111",
+            "qty": "5",
+            "item": "coffee",
+            "milk":"yes"
+          }
+        chai.request(rooturl)
+        .post('/orders')
+        .send(data)
+        .end((err, res) => {
+            expect(err).to.be.null;
+            res.should.have.status(400);
+        done();
+        });
+    })
+
+
+    it("Test case 4 - User should be able to add card",(done)=>{
+        var data={
+            "cardId" : 111111117,
+            "cardCode" :112,
+            "email":"sample@sample.com"
+        }
+        chai.request(rooturl)
+        .post('/addCard')
+        .send(data)
+        .end((err, res) => {
+            expect(err).to.be.null;
+            res.should.have.status(201);
+        done();
+        });
+    })
+})
+
+/**
+ * @type User & Authentication Test Cases
+ */
+describe('User & Authentication', () => {
+    //Generate random email address prefix
+    const emailPrefix = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+    // Append email formatting
+    const email       = `${emailPrefix}@chaitesting.com`
+    // Define testing phone #
+     const phone       = `4150000000`
+    // Default pin value
+    const pin         = `1234`
+    // Pin update value
+    const newPin      = '0987'
+
+
+    it("Create User - User should be able to register", (done) => {
+        // Relevant sample data
+        var data={
+            "email" : `${email}`,
+            "pin"   : `${pin}`  ,
+            "phone" : `${phone}`
+        }
+
         chai.request(rooturl)
         .post('/user')
         .send(data)
@@ -103,14 +121,13 @@ describe('User/Authentication', () => {
         });
     })
 
-
-
     it("Authenticate User - User should be able to login", (done) => {
-        //sample data
-        var data={
-            "email" : `${emailPrefix}@testing.com`,
-            "pin"   : `1234`,
-          }
+        // Relevant sample data
+        var data = {
+            "email" : `${email}`,
+            "pin"   : `${pin}`
+        }
+
         chai.request(rooturl)
         .post('/user/authenticate')
         .send(data)
@@ -123,10 +140,11 @@ describe('User/Authentication', () => {
 
 
     it("De-Authenticate User - User should be able to logout", (done) => {
-        //sample data
-        var data={
-            "email" : `${emailPrefix}@testing.com`,
-          }
+        // Relevant sample data
+        var data = {
+            "email": `${email}`,
+        }
+
         chai.request(rooturl)
         .post('/user/logout')
         .send(data)
@@ -139,11 +157,12 @@ describe('User/Authentication', () => {
 
     it("Change Pin - User should be able to change pin and login", (done) => {
         //sample data
-        var data={
-            "email"   : `${emailPrefix}@testing.com`,
-            "pin"     : `1234`,
-            "newPin"  : newPin
+        var data = {
+            "email"   : `${email}`,
+            "pin"     : `${pin}`,
+            "newPin"  : `${newPin}`
         }
+
         chai.request(rooturl)
         .post('/user/pin')
         .send(data)
