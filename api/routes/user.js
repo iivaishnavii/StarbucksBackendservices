@@ -31,10 +31,11 @@ router.get('/user/:email', function (req, res) {
       // Exclude pin from response
       let id    = data._id
       let email = data.email
+      let auth  = data.authenticated
       // Exclude undefined values
       let phone = (data.phone != undefined) ? data.phone : "No Phone On File"
       // Send response
-      res.json({'id': id, 'email': email, 'phone': phone});
+      res.json({'id': id, 'email': email, 'phone': phone, 'authenticated': auth});
     }
   })
 });
