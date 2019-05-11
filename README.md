@@ -116,19 +116,19 @@ Available through [GitHub Projects](https://github.com/gopinathsjsu/teamproject-
   *This week I worked on the User Profiles & Authentication API. There was a total of six routes that needed to be implemented (create user, get user, delete user, authenticate, logout, change pin). I did not run into any technical blockers with the API implementation, but there was some delay toward the beginning of the week due to other deadlines. After the User Profile & Authentication was complete, I began researching information regarding docker containers and was able to successfully write and build from a Dockerfile for Node 7.10.1. Finally, I compiled information for the README and formatted with Markdown.*
 
 
-  - Kavya Chennoju :
+- Kavya Chennoju :
 
-    *Report*
-
-
-  - Sneha Sneha :
-
-    *Report*
+  *Report*
 
 
-  - Vaishnavi Ramesh :
+- Sneha Sneha :
 
-    *Report*
+  *Report*
+
+
+- Vaishnavi Ramesh :
+
+  *Report*
 
 
 
