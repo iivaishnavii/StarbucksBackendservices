@@ -480,6 +480,32 @@
 				}
 			],
 			"description": "Order management API"
+		},
+		{
+			"name": "Payment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"sample@sample.com\",\n\t\"cardNum\":111111111,\n\t\"orderid\":\"5cd4c47e8b78652aa71e5fc4\"\n}\n"
+				},
+				"url": {
+					"raw": "/makePayment",
+					"path": [
+						"makePayment"
+					]
+				},
+				"description": "make payment route"
+			},
+			"response": []
 		}
 	]
 }
