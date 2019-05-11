@@ -4,15 +4,16 @@
 
 1. [Introduction](#introduction)
 2. [Features](#features)
-  - [Users & Authentication](#features)
-  - [Cards](#features)
-  - [Orders](#features)
-  - [Payment](#features)
-3. [Documentation](#documentation)
-4. [Developer Logs](#logs)
-  - [Project Journals](#logs)
-  - [SCRUM Board](#logs)
-  - [Burndown Chart](#logs)
+    - [Users & Authentication](#features)
+    - [Cards](#features)
+    - [Orders](#features)
+    - [Payment](#features)
+3. [Architecture](#architecture)
+4. [Documentation](#documentation)
+5. [Developer Logs](#logs)
+    - [Project Journals](#logs)
+    - [SCRUM Board](#logs)
+    - [Burndown Chart](#logs)
 
 ## Introduction
 
@@ -58,6 +59,12 @@
 
 Full documentation is available through
 [Postman Documenter](https://documenter.getpostman.com/view/6559172/S1Lx1U85)
+
+## Architecture
+
+![](.png)
+
+![](.png)
 
 ## Logs
 
