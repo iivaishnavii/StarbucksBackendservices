@@ -118,7 +118,8 @@ Available through [GitHub Projects](https://github.com/gopinathsjsu/teamproject-
 
 - Kavya Chennoju :
 
-  *Report*
+  
+  *This week I worked on the Manage Order API. I implemented 2 routes a)Post Order b)Get Order.Also,I made sure that corner cases like user doesn't exist and card doesnt exist are effectively handled.After the whole team completed the implementation of the api's assigned to them I deployed our api server on Auto Scaled EC2 Cluster with Load Balancer as well as Docker Containers in Amazon Containers(ECS). Finally, I designed the deployment diagrams for both the deployments.*
 
 
 - Sneha Sneha :
