@@ -129,7 +129,7 @@ Available through [GitHub Projects](https://github.com/gopinathsjsu/teamproject-
 
 - Vaishnavi Ramesh :
 
-  *Report*
+  *This week I worked on add card API. This API requires cardid,cardcode and email.The cardid and cardcode are validated before adding the card. The API also checks if the card already exists in the user profile. I also wrote test cases for APIs to cover all corner cases *
 
 
 
