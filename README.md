@@ -108,5 +108,11 @@ One activity of deploying services to AWS in an Auto Scaled EC2 Cluster with Loa
 ### SCRUM Board  
 Available through [GitHub Projects](https://github.com/gopinathsjsu/teamproject-sharks/projects/1)
 
+#### Weekly Scrum Reports
+
+- Michael Lowe:
+
+  *This week I worked on the User Profiles & Authentication API. There was a total of six routes that needed to be implemented (create user, get user, delete user, authenticate, logout, change pin). I did not run into any technical blockers with the API implementation, but there was some delay toward the beginning of the week due to other deadlines. After the User Profile & Authentication was complete, I began researching information regarding docker containers and was able to successfully write and build from a Dockerfile for Node 7.10.1. Finally, I compiled information for the README and formatted with Markdown.*
+
 ### Burndown Chart
 Available through [Google Sheets](https://docs.google.com/spreadsheets/d/1DYcUOFwiUoBoNflIyikQGykGCQYsfOQZoiGb_CPGHwA/edit?usp=sharing)
