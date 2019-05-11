@@ -124,7 +124,7 @@ Available through [GitHub Projects](https://github.com/gopinathsjsu/teamproject-
 
 - Sneha Sneha :
 
-  *Report*
+  *This week I worked on the Payment API. This API required "makePayment" route to complete payments of the orders made per card. I covered all the possible cases for payments like the user validation, card validation, balance verification and status update per order. The task of this api was to check for balance in the card and then make payments/deductions in case the balance is available, otherwise it discards the transaction. On successful payment, the status of the order is updated to "completed". Finally, I tested the API with using mocha and chai and also contributed in the designing of deployment/architecture diagrams.*
 
 
 - Vaishnavi Ramesh :
