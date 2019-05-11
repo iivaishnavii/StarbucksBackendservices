@@ -62,7 +62,13 @@ Full documentation is available through
 
 ## Architecture
 
-![](.png)
+### EC2 Deployment Diagram
+
+![EC2 Deployment Diagram](./architecture/DEPLOYMENT-EC2.png)
+
+### ECS Deployment Diagram
+
+![ECS Deployment Diagram](./architecture/DEPLOYMENT-ECS.png)
 
 ![](.png)
 
